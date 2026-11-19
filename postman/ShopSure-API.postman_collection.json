@@ -244,11 +244,11 @@
               "urlencoded": [
                 {
                   "key": "email",
-                  "value": "shopsure.tester@testmail.com"
+                  "value": "{{userEmail}}"
                 },
                 {
                   "key": "password",
-                  "value": "shopsure.tester123"
+                  "value": "{{userPassword}}"
                 }
               ]
             },
@@ -285,7 +285,7 @@
               "urlencoded": [
                 {
                   "key": "password",
-                  "value": "shopsure.tester123"
+                  "value": "{{userPassword}}"
                 }
               ]
             },
@@ -395,11 +395,11 @@
                 },
                 {
                   "key": "email",
-                  "value": "testershopsur1237@gmail.com"
+                  "value": "{{userEmail}}"
                 },
                 {
                   "key": "password",
-                  "value": "tester@1236"
+                  "value": "{{userPassword}}"
                 },
                 {
                   "key": "title",
@@ -493,11 +493,11 @@
               "urlencoded": [
                 {
                   "key": "email",
-                  "value": "testershopsur1239@gmail.com"
+                  "value": "{{userEmail}}"
                 },
                 {
                   "key": "password",
-                  "value": "tester@1236"
+                  "value": "{{userPassword}}"
                 }
               ]
             },
@@ -538,11 +538,11 @@
                 },
                 {
                   "key": "email",
-                  "value": "testershopsur1237@gmail.com"
+                  "value": "{{userEmail}}"
                 },
                 {
                   "key": "password",
-                  "value": "tester@1236"
+                  "value": "{{userPassword}}"
                 },
                 {
                   "key": "title",
@@ -636,7 +636,7 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/getUserDetailByEmail?email=testershopsur1237@gmail.com",
+              "raw": "{{baseUrl}}/getUserDetailByEmail?email={{userEmail}}",
               "host": [
                 "{{baseUrl}}"
               ],
@@ -646,7 +646,7 @@
               "query": [
                 {
                   "key": "email",
-                  "value": "testershopsur1237@gmail.com"
+                  "value": "{{userEmail}}"
                 }
               ]
             }

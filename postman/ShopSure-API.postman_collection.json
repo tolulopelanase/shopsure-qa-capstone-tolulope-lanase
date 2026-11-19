@@ -36,9 +36,12 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}productsList",
+              "raw": "{{baseUrl}}/productsList",
               "host": [
-                "{{baseUrl}}productsList"
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productsList"
               ]
             }
           },
@@ -103,18 +106,12 @@
               ]
             },
             "url": {
-              "raw": "{{baseUrl}}/searchProduct?=",
+              "raw": "{{baseUrl}}/searchProduct",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
                 "searchProduct"
-              ],
-              "query": [
-                {
-                  "key": "",
-                  "value": ""
-                }
               ]
             }
           },
@@ -128,7 +125,7 @@
               "script": {
                 "type": "text/javascript",
                 "exec": [
-                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Products list is empty\", function () {\r\n    pm.expect(responseBody.products).to.be.an(\"array\");\r\n    pm.expect(responseBody.products).to.be.empty;\r\n});"
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 400\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(400);\r\n});\r\n\r\npm.test(\"Missing parameter message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\r\n        \"Bad request, search_product parameter is missing in POST request.\"\r\n    );\r\n});"
                 ]
               }
             }
@@ -141,7 +138,8 @@
               "urlencoded": [
                 {
                   "key": "search_product",
-                  "value": "ShopSureXYZ999"
+                  "value": "ShopSureXYZ999",
+                  "disabled": true
                 }
               ]
             },

@@ -71,7 +71,12 @@
             }
           },
           "response": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
         {
           "name": "To Search Product",
           "event": [
@@ -153,10 +158,6 @@
           "response": []
         }
       ]
-    },
-    {
-      "name": "Search",
-      "item": []
     },
     {
       "name": "Brands",

@@ -1,0 +1,659 @@
+{
+  "info": {
+    "_postman_id": "d95ddcba-d2a0-4340-9054-1b9e746181af",
+    "name": "ShopSure API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57859672",
+    "_collection_link": "https://go.postman.co/collection/57859672-d95ddcba-d2a0-4340-9054-1b9e746181af?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Retrieve All Products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Products list is not empty\", function () {\r\n    pm.expect(responseBody.products).to.be.an(\"array\");\r\n    pm.expect(responseBody.products).to.not.be.empty;\r\n});\r\n\r\npm.test(\"Product contains all required fields\", function () {\r\n    const product = responseBody.products[0];\r\n\r\n    pm.expect(product).to.have.property(\"id\");\r\n    pm.expect(product).to.have.property(\"name\");\r\n    pm.expect(product).to.have.property(\"price\");\r\n    pm.expect(product).to.have.property(\"brand\");\r\n    pm.expect(product).to.have.property(\"category\");\r\n});\r\n\r\npm.test(\"Product category contains category details\", function () {\r\n    const product = responseBody.products[0];\r\n\r\n    pm.expect(product.category).to.be.an(\"object\");\r\n    pm.expect(product.category).to.have.property(\"category\");\r\n});\r\n\r\npm.test(\"Content-Type header is present\", function () {\r\n    const contentType = pm.response.headers.get(\"Content-Type\");\r\n\r\n    pm.expect(contentType).to.exist;\r\n});\r\n\r\npm.test(\"Content-Type header returns observed value\", function () {\r\n    const contentType = pm.response.headers.get(\"Content-Type\");\r\n\r\n    pm.expect(contentType).to.eql(\"text/html; charset=utf-8\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}productsList",
+              "host": [
+                "{{baseUrl}}productsList"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "To All Products List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 405\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(405);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"This request method is not supported.\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/productsList",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "productsList"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "To All Brands List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 405\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(405);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"This request method is not supported.\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/brandsList",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brandsList"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Brands List",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Brands list is not empty\", function () {\r\n    pm.expect(responseBody.brands).to.be.an(\"array\");\r\n    pm.expect(responseBody.brands).to.not.be.empty;\r\n});\r\n\r\npm.test(\"Brand contains required fields\", function () {\r\n    const brand = responseBody.brands[0];\r\n\r\n    pm.expect(brand).to.have.property(\"id\");\r\n    pm.expect(brand).to.have.property(\"brand\");\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/brandsList",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brandsList"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "To Search Product",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Search results are not empty\", function () {\r\n    pm.expect(responseBody.products).to.be.an(\"array\");\r\n    pm.expect(responseBody.products).to.not.be.empty;\r\n});\r\n\r\npm.test(\"Search results contain the search term\", function () {\r\n    responseBody.products.forEach(function (product) {\r\n        pm.expect(product.name.toLowerCase()).to.include(\"top\");\r\n    });\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "search_product",
+                  "value": "top"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/searchProduct?=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "searchProduct"
+              ],
+              "query": [
+                {
+                  "key": "",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Product Without Parameter",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Products list is empty\", function () {\r\n    pm.expect(responseBody.products).to.be.an(\"array\");\r\n    pm.expect(responseBody.products).to.be.empty;\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "search_product",
+                  "value": "ShopSureXYZ999"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/searchProduct",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "searchProduct"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "Brands",
+          "item": [
+            {
+              "name": "Account Lifecycle",
+              "item": [
+                {
+                  "name": "Verify Login with Valid Details",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"User exists!\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "email",
+                          "value": "shopsure.tester@testmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "shopsure.tester123"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/verifyLogin",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifyLogin"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Verify Login without email parameter",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 400\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(400);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"Bad request, email or password parameter is missing in POST request.\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "password",
+                          "value": "shopsure.tester123"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/verifyLogin",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifyLogin"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Verify Login",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 405\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(405);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"This request method is not supported.\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/verifyLogin",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifyLogin"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Verify Login with invalid details",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 404\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(404);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"User not found!\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "email",
+                          "value": "testing@shopsuretest.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "testing123"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/verifyLogin",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "verifyLogin"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create/Register User Account",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 201\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(201);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"User created!\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "name",
+                          "value": "ShopSure Test User"
+                        },
+                        {
+                          "key": "email",
+                          "value": "testershopsur1237@gmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "tester@1236"
+                        },
+                        {
+                          "key": "title",
+                          "value": "Mrs"
+                        },
+                        {
+                          "key": "birth_date",
+                          "value": "25"
+                        },
+                        {
+                          "key": "birth_month",
+                          "value": "7"
+                        },
+                        {
+                          "key": "firstname",
+                          "value": "ShopSure"
+                        },
+                        {
+                          "key": "lastname",
+                          "value": "Tester"
+                        },
+                        {
+                          "key": "company",
+                          "value": "ShopSure"
+                        },
+                        {
+                          "key": "address1",
+                          "value": "10 Test Street"
+                        },
+                        {
+                          "key": "address2",
+                          "value": "Test Area"
+                        },
+                        {
+                          "key": "country",
+                          "value": "USA"
+                        },
+                        {
+                          "key": "zipcode",
+                          "value": "110002"
+                        },
+                        {
+                          "key": "state",
+                          "value": "New York"
+                        },
+                        {
+                          "key": "city",
+                          "value": "New York"
+                        },
+                        {
+                          "key": "mobile_number",
+                          "value": "9876574210"
+                        },
+                        {
+                          "key": "",
+                          "value": "",
+                          "disabled": true
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/createAccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "createAccount"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete User Account",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"Account deleted!\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "email",
+                          "value": "testershopsur1239@gmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "tester@1236"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/deleteAccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "deleteAccount"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Update User Account",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"Response message is correct\", function () {\r\n    pm.expect(responseBody.message).to.eql(\"User updated!\");\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "key": "name",
+                          "value": "ShopSure Test User"
+                        },
+                        {
+                          "key": "email",
+                          "value": "testershopsur1237@gmail.com"
+                        },
+                        {
+                          "key": "password",
+                          "value": "tester@1236"
+                        },
+                        {
+                          "key": "title",
+                          "value": "Mrs"
+                        },
+                        {
+                          "key": "birth_date",
+                          "value": "25"
+                        },
+                        {
+                          "key": "birth_month",
+                          "value": "7"
+                        },
+                        {
+                          "key": "firstname",
+                          "value": "ShopSure"
+                        },
+                        {
+                          "key": "lastname",
+                          "value": "Tester"
+                        },
+                        {
+                          "key": "company",
+                          "value": "ShopSure"
+                        },
+                        {
+                          "key": "address1",
+                          "value": "10 Test Street"
+                        },
+                        {
+                          "key": "address2",
+                          "value": "Test Area"
+                        },
+                        {
+                          "key": "country",
+                          "value": "USA"
+                        },
+                        {
+                          "key": "zipcode",
+                          "value": "110002"
+                        },
+                        {
+                          "key": "state",
+                          "value": "New York"
+                        },
+                        {
+                          "key": "city",
+                          "value": "New York"
+                        },
+                        {
+                          "key": "mobile_number",
+                          "value": "9876574210"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/updateAccount",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "updateAccount"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "user account detail by email",
+                  "event": [
+                    {
+                      "listen": "test",
+                      "script": {
+                        "type": "text/javascript",
+                        "exec": [
+                          "pm.test(\"HTTP status is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\nconst responseBody = pm.response.json();\r\n\r\npm.test(\"Response code is 200\", function () {\r\n    pm.expect(responseBody.responseCode).to.eql(200);\r\n});\r\n\r\npm.test(\"User details are returned\", function () {\r\n    pm.expect(responseBody.user).to.be.an(\"object\");\r\n});\r\n\r\npm.test(\"Returned email matches the requested email\", function () {\r\n    pm.expect(responseBody.user.email).to.eql(pm.variables.get(\"userEmail\"));\r\n});"
+                        ]
+                      }
+                    }
+                  ],
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "",
+                      "options": {
+                        "raw": {
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/getUserDetailByEmail?email=testershopsur1237@gmail.com",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "getUserDetailByEmail"
+                      ],
+                      "query": [
+                        {
+                          "key": "email",
+                          "value": "testershopsur1237@gmail.com"
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

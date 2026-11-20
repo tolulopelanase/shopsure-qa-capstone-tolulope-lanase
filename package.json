@@ -1,0 +1,29 @@
+{
+  "name": "qqc22to02project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "playwright.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolulopelanase/shopsure-qa-capstone-tolulope-lanase.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/tolulopelanase/shopsure-qa-capstone-tolulope-lanase/issues"
+  },
+  "homepage": "https://github.com/tolulopelanase/shopsure-qa-capstone-tolulope-lanase#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "newman": "^6.2.3",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

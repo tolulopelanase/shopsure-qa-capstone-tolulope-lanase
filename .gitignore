@@ -1,3 +1,5 @@
 node_modules/
 test-results/
-playwright-report/
+playwright-report/postman/shopsure.local.postman_environment.json
+postman/shopsure.local.postman_environment.json
+postman/shopsure.postman_environment.json

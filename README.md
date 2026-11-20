@@ -260,3 +260,31 @@ GitHub repository: https://github.com/tolulopelanase/shopsure-qa-capstone-tolulo
 
 Prepared as part of the Quales Consulting Cohort 22 QA Engineering Capstone Project.
 
+
+## Test Execution Instructions
+
+### Install Dependencies
+Run the following command from the project directory:
+
+npm install
+
+### Run Playwright Tests
+Run all browser tests:
+
+npx playwright test
+
+### View Playwright HTML Report
+After test execution, run:
+
+npx playwright show-report
+
+### Run Postman API Tests
+Run the API collection using Newman:
+
+npx newman run postman/ShopSure-API.postman_collection.json -e postman/shopsure.postman_environment.json
+
+### Important Notes
+- Ensure the test environment is configured before running API tests.
+- Keep login credentials and private environment values out of GitHub.
+- The test reports provide evidence of test execution and results.
+
